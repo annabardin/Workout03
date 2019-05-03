@@ -2,37 +2,18 @@
 
 This R package was created to implement functions for calculating the probabilities of a Binomial random variable and related calculations.  Moreover, the package contains built in functions to allow the user to visualize probability distributions and cumulative distributions.
 
-Here is a list of functions included in the package:
-```{r}
-bin_var()
-```
-```{r}
-bin_choose()
-```
-```{r}
-bin_probability()
-```
-```{r}
-bin_distribution()
-```
-```{r}
-bin_cumulative()
-```
-```{r}
-bin_mean()
-```
-```{r}
-bin_variance()
-```
-```{r}
-bin_mode()
-```
-```{r}
-bin_skewness()
-```
-```{r}
-bin_kurtosis()
-```
+Here is a list of functions included in the package: <br>
+`bin_var()` <br>
+`bin_choose()` <br>
+`bin_probability()`<br>
+`bin_distribution()`<br>
+`bin_cumulative()` <br>
+`bin_mean()`<br>
+`bin_variance()`<br>
+`bin_mode()`<br>
+`bin_skewness()`<br>
+`bin_kurtosis()`<br>
+
 ## Motivation:
 
 This package was created as part of a class project to learn the basic elements of creating an R package.
@@ -42,7 +23,7 @@ This package was created as part of a class project to learn the basic elements 
 To use this package, simply download the zip file and manually install the package.  After installing the package, whenever you want to use it you can load it with the command library(binomial)
 
 ## Code Example:
-```{r echo=TRUE}
+```r
 library(binomial)
 # Here is how you should be able to invoke bin_choose
 bin_choose(n = 5, k = 2)
