@@ -1,0 +1,12 @@
+#' @title Bin skewness
+#' @description return skewness
+#' @param trials, prob
+#' @return skewness
+#' @export
+#' @examples
+#'
+bin_skewness <- function(trials,prob){
+  check_trials(trials)
+  check_prob(prob)
+  aux_skewness(trials,prob)
+}

@@ -1,0 +1,5 @@
+#' @export
+
+plot.bincum <- function(df){
+  ggplot(df, aes(x=df$success, y=df$cumulative))+geom_line()+xlab("Successes")+ylab("Probability")
+}

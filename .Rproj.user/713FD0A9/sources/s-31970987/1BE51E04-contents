@@ -1,0 +1,12 @@
+#' @title Bin variance
+#' @description return variance
+#' @param trials, prob
+#' @return variance
+#' @export
+#' @examples
+#'
+bin_variance <- function(trials,prob){
+  check_trials(trials)
+  check_prob(prob)
+  aux_variance(trials,prob)
+}

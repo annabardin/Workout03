@@ -1,0 +1,6 @@
+context("checkers")
+test_that("success is a vector of non negative integers less than or equal to trials"{
+      expect_lte(success,trials)
+      expect_gte(success,0)
+      expect_equivalent(success%%floor(success),1)
+      })

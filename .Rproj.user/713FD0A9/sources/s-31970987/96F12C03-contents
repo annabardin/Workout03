@@ -1,0 +1,12 @@
+#' @title Bin kurtosis
+#' @description return kurtosis
+#' @param trials, prob
+#' @return kurtosis
+#' @export
+#' @examples
+#'
+bin_kurtosis <- function(trials,prob){
+  check_trials(trials)
+  check_prob(prob)
+  aux_kurtosis(trials,prob)
+}

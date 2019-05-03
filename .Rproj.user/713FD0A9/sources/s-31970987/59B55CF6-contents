@@ -1,0 +1,214 @@
+---
+title: "Workout03"
+author: "Anna Bardin"
+date: "April 20, 2019"
+output: html_document
+---
+# 1.1 Private Checker Functions
+```{r}
+# CHECK PROB
+check_prob <- function(prob){
+  if (prob>=0 & prob<=1){
+    return(TRUE)
+  }
+  else{
+    stop("invalid prob value")
+  }
+}
+  
+# CHECK TRIALS
+check_trials <- function(trials){
+  if (trials>=0 & round(trials)==trials){
+    return(TRUE)
+  }
+  else{
+    stop("invalid trials value")
+  }
+}
+# CHECK SUCCESS
+check_success<- function(success,trials){
+  trials <- rep(trials,length(success))
+for (i in 1:length(success)){
+  if ((success[i])>=0 & round(success[i])==success[i]& success[i]<=trials[i]){
+    return(TRUE)
+  }
+  else{
+    stop("invalid success value")
+  }
+}
+}
+```
+
+# 1.2 Private Auxiliary Functions
+```{r}
+# AUX MEAN
+aux_mean <- function(trials, prob){
+  return(trials*prob)
+}
+# AUX VARIANCE
+aux_variance <- function(trials, prob){
+  return((trials*prob*(1-prob)))
+}
+# AUX MODE
+aux_mode <- function(trials, prob){
+  return(floor(trials*prob+prob))
+}
+# AUX SKEWNESS
+aux_skewness <- function(trials, prob){
+  return((1-2*prob)/(sqrt(trials*prob*(1-prob))))
+}
+# AUX KURTOSIS
+aux_kurtosis <- function(trials, prob){
+  return((1-6*prob*(1-prob))/(trials*prob*(1-prob)))
+}
+```
+
+# 1.3 Function bin_choose()
+```{r}
+bin_choose <- function(n,k){
+  for (i in 1:length(k)){
+  if (k[i]>n){
+    stop("k cannot be greater than n")
+  }
+  }
+  n <- rep(n,length(k))
+  return(factorial(n)/(factorial(k)*factorial(n-k)))
+}
+```
+
+# 1.4 Function bin_probability()
+```{r}
+bin_probability <- function(success,trials,prob){
+  if (!check_trials(trials)){
+    stop("invalid trials value")
+  }
+  if(!check_prob(prob)){
+    stop("invalid prob value")
+  }
+  if(!check_success(success,trials)){
+    stop("invalid success value")
+  }
+  return(bin_choose(trials,success)*prob^(success)*(1-prob)^(trials-success))
+  }
+```
+
+# 1.5 Function bin_distribution
+```{r}
+
+bin_distribution <- function(trials,prob){
+success <- 0:(trials)
+x <- (bin_probability(success,trials,prob))
+df <- data.frame(cbind("success"=(0:trials),"probability"=x))
+class(df)<- c("bindis")
+return(df)
+}
+
+# PLOT BINDIS
+plot.bindis <- function(df){
+  library(ggplot2)
+  ggplot(df,aes(x=df$success,y=df$probability))+geom_bar(stat="identity")+xlab("successes")+ylab("probability")
+  
+}
+```
+
+# 1.6 Bin_Cumulative
+```{r}
+bin_cumulative <- function(trials,prob){
+  df<- bin_distribution(trials,prob)
+  cumulative2 <- rep(NA,trials+1)
+  for (i in 1:(trials+1)){
+    cumulative2[i] <- sum(df[1:i,2])
+  }
+  df$cumulative <- cumulative2 
+  class(df)<- c("bincum","data.frame")
+  return(df)
+}
+library(ggplot2)
+
+plot.bincum <- function(df){
+  ggplot(df, aes(x=df$success, y=df$cumulative))+geom_line()+xlab("Successes")+ylab("Probability")
+}
+  
+
+```
+
+#1.7 Bin_variable
+```{r}
+bin_variable <- function(trials,prob){
+  check_trials(trials)
+  check_prob(prob)
+  x = list(trials,prob)
+  class(x)<-"binvar"
+  return(x)
+}
+
+print.binvar <- function(x){
+  cat('"Binomial Variable"','\n\n')
+  cat("Parameters",'\n')
+  cat("- number of trials: ",x[[1]],'\n')
+  cat("- prob of success: ",x[[2]],'\n')
+}
+
+summary.binvar <- function(x){
+  x<-as.numeric(x)
+  trials <- x[1]
+  prob <- x[2]
+  mean <- aux_mean(trials,prob)
+  variance <- aux_variance(trials,prob)
+  mode <- aux_mode(trials,prob)
+  skewness <- aux_skewness(trials,prob)
+  kurtosis <- aux_kurtosis(trials,prob)
+  list <- list(trials,prob,mean,variance,mode,skewness,kurtosis)
+  class(list) <- "summary.binvar"
+  return(list)
+}
+
+print.summary.binvar <- function(x){
+  cat('"Summary Binomial"','\n\n')
+  cat("Parameters",'\n')
+  cat("- number of trials: ",x[[1]],'\n')
+  cat("- prob of success: ",x[[2]],'\n\n')
+  cat("Measures",'\n')
+  cat("- mean: ",x[[3]],'\n')
+  cat("- variance: ",x[[4]],'\n')
+  cat("- mode: ",x[[5]],'\n')
+  cat("- skewness: ",x[[6]],'\n')  
+  cat("- kurtosis: ",x[[7]],'\n')
+    }  
+```
+
+# 1.8 Functions of Measures
+```{r}
+bin_mean <- function(trials,prob){
+  check_trials(trials)
+  check_prob(prob)
+  aux_mean(trials,prob)
+}
+
+bin_mode <- function(trials,prob){
+  check_trials(trials)
+  check_prob(prob)
+  aux_mode(trials,prob)
+}
+
+bin_variance <- function(trials,prob){
+  check_trials(trials)
+  check_prob(prob)
+  aux_variance(trials,prob)
+}
+
+
+bin_skewness <- function(trials,prob){
+  check_trials(trials)
+  check_prob(prob)
+  aux_skewness(trials,prob)
+}
+
+
+bin_kurtosis <- function(trials,prob){
+  check_trials(trials)
+  check_prob(prob)
+  aux_kurtosis(trials,prob)
+}
+```
+

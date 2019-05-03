@@ -1,0 +1,12 @@
+#' @title Bin mode
+#' @description return mode
+#' @param trials, prob
+#' @return mode
+#' @export
+#' @examples
+#'
+bin_mode <- function(trials,prob){
+  check_trials(trials)
+  check_prob(prob)
+  aux_mode(trials,prob)
+}

@@ -1,0 +1,4 @@
+# AUX MODE
+aux_mode <- function(trials, prob){
+  return(floor(trials*prob+prob))
+}

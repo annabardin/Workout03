@@ -1,0 +1,6 @@
+context("checkers")
+test_that("trials is of length 1 and between 0 and 1"{
+  expect_length(trials,1)
+  expect_gte(trials,0)
+  expect_equivalent(1, trials%%(floor(trials)))
+})

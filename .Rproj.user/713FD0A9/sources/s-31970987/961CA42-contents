@@ -1,0 +1,6 @@
+context("checkers")
+test_that("probability is between 1 and 0",{
+  expect_length(prob,1)
+  expect_lte(prob,1)
+  expect_gte(prob,0)
+})

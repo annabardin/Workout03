@@ -1,0 +1,4 @@
+# AUX MEAN
+aux_mean <- function(trials, prob){
+  return(trials*prob)
+}

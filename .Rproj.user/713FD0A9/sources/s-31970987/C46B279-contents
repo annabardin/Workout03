@@ -1,0 +1,4 @@
+# AUX VARIANCE
+aux_variance <- function(trials, prob){
+  return((trials*prob*(1-prob)))
+}

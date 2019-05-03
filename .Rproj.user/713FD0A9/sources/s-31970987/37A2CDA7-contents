@@ -1,0 +1,9 @@
+# CHECK TRIALS
+check_trials <- function(trials){
+  if (trials>=0 & round(trials)==trials){
+    return(TRUE)
+  }
+  else{
+    stop("invalid trials value")
+  }
+}

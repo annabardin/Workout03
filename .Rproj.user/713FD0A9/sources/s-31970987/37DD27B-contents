@@ -1,0 +1,5 @@
+context("summary measures")
+test_that("inputs are numeric" {
+  expect_true(is.numeric(trials))
+  expect_true(is.numberic(prob))
+  })

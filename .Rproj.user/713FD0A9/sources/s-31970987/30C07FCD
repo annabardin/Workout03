@@ -1,0 +1,23 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1556822068145.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "35630364",
+    "id" : "30C07FCD",
+    "lastKnownWriteTime" : 1556823488,
+    "last_content_update" : 1556823488852,
+    "path" : "~/Binomial/R/bin_choose.R",
+    "project_path" : "R/bin_choose.R",
+    "properties" : {
+        "cursorPosition" : "21,0",
+        "scrollLine" : "0",
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 2,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

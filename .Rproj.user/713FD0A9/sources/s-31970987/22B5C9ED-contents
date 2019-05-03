@@ -1,0 +1,20 @@
+#' @title Bin Probability
+#' @description determines probability of getting a certain amount of successes or less in a certain amount of trials
+#' @param success, trials, prob
+#' @return binomical probability
+#' @export
+#' @examples
+#'
+bin_probability <- function(success,trials,prob){
+  if (!check_trials(trials)){
+    stop("invalid trials value")
+  }
+  if(!check_prob(prob)){
+    stop("invalid prob value")
+  }
+  if(!check_success(success,trials)){
+    stop("invalid success value")
+  }
+  return(bin_choose(trials,success)*prob^(success)*(1-prob)^(trials-success))
+}
+
